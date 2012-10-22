@@ -1,0 +1,41 @@
+
+	autotest usage
+
+1. auto-build
+
+    Auto build the kernel and report failures.
+
+$ bash -x -v tools/testing/atest/auto-build.sh
+
+Cfgs: tools/testing/atest/auto-build.sh
+Logs: logs/auto-build/{config.log, build.log}
+Note: In order to send email, please install
+exim4 and change the default sender.
+
+2. auto-dnw-boot.sh
+
+    Auto download the images(kernel, system,
+    ramdisk, recovery, uboot) and boot them.
+    reboot android and uboot tests. Report
+    if fails.
+
+Cfgs: tools/testing/atest/auto-dnw-boot.{sh,py}
+Logs: logs/auto-dnw-boot/boot.log
+Note: Please ensure the serial cable and usb cable
+are inserted and the android system is booted.
+Usage:
+    * download
+    tools/testing/atest/auto-dnw-boot.sh
+    -K /path/to/zImage, default is arch/arm/boot/zImage
+    -S /path/to/system.img, no default.
+    -D /path/to/ramdisk-uboot.img, no default.
+    -R /path/to/recovery-uboot.img, no default.
+    -U /path/to/uboot_fuse.bin, no default.
+    -I /path/to/images, if there are the above images put
+    in /path/to/images, they can be found and downloaded
+    one by one.
+    -u N, uboot reboot test, N is the times.
+    -B N, android reboot test, N is the times.
+    -N, don't download any images, using the already flashed
+     ones. by default, the arch/arm/boot/zImage is downloaded
+     every time.
